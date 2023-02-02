@@ -36,6 +36,9 @@ jobs:
         
       - name: Debug
         run: cat dist/Web/wwwroot/index.html
+        
+      - name: Add .nojekyll file
+        run: touch dist/Web/wwwroot/.nojekyll
 
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
