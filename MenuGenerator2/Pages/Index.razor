@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject HttpClient Http
 
 <PageTitle>Index</PageTitle>
 
@@ -8,4 +9,79 @@
 
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
-<PouetComp/>
+@if (m_allMenus != null)
+{
+	<div class="form-group mb-3" onsubmit="return false">
+		<label for="formControlRange">Nombre de menus à faire:</label>
+		<input type="range" class="form-control-range" id="formControlRange" @bind="m_numberOfMenusToGenerate" min="1"
+	  max="100">
+		<input type="number" class="form-control-number" @bind="m_numberOfMenusToGenerate" min="1" max="100">
+		<button type="button" class="btn btn-primary" @onclick="GenerateMenus">Générer</button>
+	</div>
+}
+
+@if (m_menus != null)
+{
+	<table class="table">
+
+		<thead>
+			<tr>
+				<th scope="col">Plat</th>
+				<th scope="col">Durée de préparation (minutes)</th>
+				<th scope="col">Ingredients</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			@foreach (var menu in m_menus)
+			{
+				<tr>
+					<th>@menu.name</th>
+					<td>@menu.preparationTimeInMinutes</td>
+					<td>
+						@foreach (var item in menu.ingredients)
+						{
+							<ul>
+								<li>@item</li>
+							</ul>
+						}
+
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code {
+
+	private int m_numberOfMenusToGenerate = 20;
+
+	public void GenerateMenus()
+	{
+		m_menus = new Menu[m_numberOfMenusToGenerate];
+		Random rnd = new Random();
+		for (int i = 0; i < m_numberOfMenusToGenerate; i++)
+		{
+			var randomIndex = rnd.Next(m_allMenus.Length);
+			m_menus[i] = m_allMenus[randomIndex];
+		}
+	}
+
+	private Menu[]? m_allMenus = null;
+	private Menu[]? m_menus = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		m_allMenus = await Http.GetFromJsonAsync<Menu[]>("sample-data/menus.json");
+	}
+
+	public class Menu
+	{
+		public string name { get; set; } = "";
+
+		public int preparationTimeInMinutes { get; set; }
+
+		public string[] ingredients { get; set; } = new string[0];
+	}
+}
