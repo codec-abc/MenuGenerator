@@ -12,6 +12,9 @@ jobs:
       # Checkout the code
       - name: Checkout 🛎️
         uses: actions/checkout@v3
+        
+      - name: Debug0
+        run: cat MenuGenerator2/wwwroot/index.html
 
       # Install .NET Core SDK
       - name: Setup .NET Core
