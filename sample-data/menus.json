@@ -1,0 +1,18 @@
+﻿[
+  {
+    "name": "tarte au thon",
+    "preparationTimeInMinutes": 10,
+    "Ingredients": [
+      "tarte",
+      "thon"
+    ]
+  },
+  {
+    "name": "tarte au saumon",
+    "preparationTimeInMinutes": 10,
+    "Ingredients": [
+      "tarte",
+      "saumon"
+    ]
+  }
+]
