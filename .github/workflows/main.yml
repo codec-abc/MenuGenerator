@@ -1,10 +1,6 @@
 name: github pages
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: [push]
 
 permissions:
   contents: write
@@ -14,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checkout the code
-      - uses: actions/checkout@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        
+      - name: Debug0
+        run: cat MenuGenerator2/wwwroot/index.html
 
       # Install .NET Core SDK
       - name: Setup .NET Core
@@ -29,6 +29,9 @@ jobs:
       # Publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
         run: dotnet publish MenuGenerator2/MenuGenerator2.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+        
+      - name: Debug
+        run: cat dist/Web/wwwroot/index.html
 
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
