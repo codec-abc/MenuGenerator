@@ -1,35 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
-@codec-abc
-Swimburger /
-BlazorGitHubPagesDemo
-Public
-
-Fork your own copy of Swimburger/BlazorGitHubPagesDemo
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-
-    Insights
-
-Deploy to GitHub Pages
-Add FixIntegrity.ps1 #2
-
-    Jobs
-
-    Run details
-
-Workflow file for this run
-.github/workflows/pwa.yml at 61ce15f
 name: Deploy to GitHub Pages
 
 # Run workflow on every push to the master branch
@@ -104,4 +72,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: release/wwwroot
-Add FixIntegrity.ps1 · Swimburger/BlazorGitHubPagesDemo@61ce15f
