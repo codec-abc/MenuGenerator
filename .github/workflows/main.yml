@@ -12,6 +12,9 @@ jobs:
       # Checkout the code
       - name: Checkout 🛎️
         uses: actions/checkout@v3
+      
+      - name: Fix base path
+        run: sed 's#<base href="/" />#<base href="/MenuGenerator/" />#' MenuGenerator2/wwwroot/index.html
         
       - name: Debug0
         run: cat MenuGenerator2/wwwroot/index.html
