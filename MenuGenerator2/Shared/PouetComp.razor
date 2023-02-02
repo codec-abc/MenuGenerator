@@ -1,0 +1,15 @@
+﻿<button @onclick="OnClick">Pouet</button>
+
+@if (m_hasPouet)
+{
+		<p>😘.</p>
+}
+
+@code {
+	bool m_hasPouet = false;
+
+	public void OnClick()
+	{
+		m_hasPouet = true;
+	}
+}
