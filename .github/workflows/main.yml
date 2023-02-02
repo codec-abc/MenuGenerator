@@ -25,6 +25,10 @@ jobs:
       # Install dotnet wasm buildtools workload
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
+        
+      # Publishes Blazor project to the release-folder
+      - name: Build .NET Core Project
+        run: dotnet build MenuGenerator2/MenuGenerator2.csproj -c:Release
           
       # Publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
