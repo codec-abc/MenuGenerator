@@ -2,24 +2,25 @@ name: github pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "master" ]
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       # Checkout the code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Install .NET Core SDK
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
           
       # Install dotnet wasm buildtools workload
       - name: Install .NET WASM Build Tools
@@ -27,11 +28,9 @@ jobs:
           
       # Publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
-        run: dotnet publish Web/Web.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+        run: dotnet publish MenuGenerator2/MenuGenerator2.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
       - name: Commit wwwroot to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist/Web/wwwroot
+          folder: dist/Web/wwwroot
