@@ -14,5 +14,18 @@
       "tarte",
       "saumon"
     ]
+  },
+   {
+    "name": "salade d'été",
+    "preparationTimeInMinutes": 15,
+    "Ingredients": [
+      "coeur de laitue",
+      "tomates",
+      "croutons",
+      "carottes pickles",
+      "mozzarella", 
+      "jambon de Parme",
+      "maïs"
+    ]
   }
 ]
